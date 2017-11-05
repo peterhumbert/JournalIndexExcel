@@ -6,7 +6,7 @@ Sub JournalIndexTest()
     Dim N As Integer
     N = 300 ' maximum number of rows in spreadsheet
 	
-	' sort by category
+    ' sort by category
     Range(Cells(1, "A"), Cells(N, "C")).Sort key1:=Range("A1"), _
         order1:=xlAscending, Header:=xlNo
 		
@@ -18,7 +18,7 @@ Sub JournalIndexTest()
         Dim j As Integer
         j = i + 1
         
-		' delete duplicated category cells
+        ' delete duplicated category cells
         Do While StrComp(Cells(j, "A").Value, category) = 0 And j < N
             Cells(j, "A").Value = ""
             j = j + 1
