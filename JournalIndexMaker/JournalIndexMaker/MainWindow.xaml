@@ -11,8 +11,8 @@
             <ColumnDefinition Width="118*"/>
             <ColumnDefinition Width="55*"/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="txt" Margin="10,10,0,33.8" TextWrapping="Wrap" HorizontalAlignment="Left" Width="498" Grid.ColumnSpan="2" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
-        <Button x:Name="btnConvert" Content="Convert to Index" HorizontalAlignment="Left" VerticalAlignment="Top" Width="498" Margin="10,292,0,0" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="txt" Margin="10,10,10.4,0" TextWrapping="Wrap" Grid.ColumnSpan="2" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Height="262" VerticalAlignment="Top"/>
+        <Button x:Name="btnConvert" Content="Convert to Index" Margin="10,277,10.4,9.8" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>
