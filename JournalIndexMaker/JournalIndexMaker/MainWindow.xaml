@@ -12,7 +12,7 @@
             <ColumnDefinition Width="55*"/>
         </Grid.ColumnDefinitions>
         <TextBox x:Name="txt" Margin="10,10,10.4,0" TextWrapping="Wrap" Grid.ColumnSpan="2" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Height="262" VerticalAlignment="Top"/>
-        <Button x:Name="btnConvert" Content="Convert to Index" Margin="10,277,10.4,9.8" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnConvert" Content="Convert to Index" Margin="10,277,10.4,9.8" Grid.ColumnSpan="2" Click="btnConvert_Click"/>
 
     </Grid>
 </Window>

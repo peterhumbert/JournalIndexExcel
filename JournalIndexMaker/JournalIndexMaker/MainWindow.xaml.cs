@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections;
 
 namespace JournalIndexMaker
 {
@@ -20,6 +21,8 @@ namespace JournalIndexMaker
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Dictionary<string, Category> d = new Dictionary<string, Category>();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -27,7 +30,32 @@ namespace JournalIndexMaker
 
         private void btnConvert_Click(object sender, RoutedEventArgs e)
         {
+            Console.WriteLine(txt.GetLineText(0).GetHashCode());
+            string[] allLines = txt.Text.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.None);
 
+            for (int i = 0; i < txt.LineCount; i++)
+            {
+                string line = allLines[i];
+                string[] splitLine = line.Split(',');
+                string catName = splitLine[0].Trim();
+                string subcatName = splitLine[1].Trim();
+                string date = splitLine[2].Trim();
+                if (!d.ContainsKey(catName))
+                {
+                    d.Add(catName, new Category(catName));
+                }
+
+                if (d.TryGetValue(catName, out Category currentCat))
+                {
+                    Console.WriteLine(DateTime.Parse(date));
+                    currentCat.addEntry(subcatName, DateTime.Parse(date));
+                    
+                }
+                else
+                {
+                    throw new Exception("Dictionary does not contain category " + catName);
+                }                
+            }
         }
     }
 }
