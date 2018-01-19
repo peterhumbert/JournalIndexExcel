@@ -31,7 +31,7 @@ namespace JournalIndexMaker
         private void btnConvert_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine(txt.GetLineText(0).GetHashCode());
-            string[] allLines = txt.Text.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.None);
+            string[] allLines = txt.Text.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
             for (int i = 0; i < txt.LineCount; i++)
             {
@@ -42,19 +42,21 @@ namespace JournalIndexMaker
                 string date = splitLine[2].Trim();
                 if (!d.ContainsKey(catName))
                 {
-                    d.Add(catName, new Category(catName));
-                }
-
-                if (d.TryGetValue(catName, out Category currentCat))
-                {
-                    Console.WriteLine(DateTime.Parse(date));
-                    currentCat.addEntry(subcatName, DateTime.Parse(date));
-                    
+                    d.Add(catName, new Category(catName, subcatName, dt));
                 }
                 else
                 {
-                    throw new Exception("Dictionary does not contain category " + catName);
-                }                
+                    if (d.TryGetValue(catName, out Category currentCat))
+                    {
+                        Console.WriteLine(DateTime.Parse(date));
+                        currentCat.addEntry(subcatName, DateTime.Parse(date));
+
+                    }
+                    else
+                    {
+                        throw new Exception("Dictionary does not contain category " + catName);
+                    }
+                }            
             }
         }
     }
